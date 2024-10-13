@@ -1,0 +1,92 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-4">User Settings</h2>
+
+    <div class="mb-3">
+        <label for="newUser" class="form-label">New User:</label>
+        <div class="mb-3 row">
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="newUserID" placeholder="User ID"
+                    [(ngModel)]="newUserID" />
+            </div>
+            <div class="col-sm-7">
+                <input type="text" class="form-control" id="newUserDisplayName" placeholder="User Display Name"
+                    [(ngModel)]="newUserDisplayName" />
+            </div>
+            <div class="col-sm-2">
+                <button class="btn btn-primary" (click)="addUser()">
+                    Add User
+                </button>
+            </div>
+        </div>
+
+
+    </div>
+
+    <table class="table table-striped mt-3" *ngIf="users.length > 0">
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>User display name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{ user.user_id }}</td>
+                <td>{{ user.user_display_name }}</td>
+                <td>
+                    <button class="btn btn-danger" (click)="deleteUser(user)">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Food Settings</h2>
+
+    <div class="mb-3">
+        <label for="newFood" class="form-label">New Food:</label>
+        <div class="mb-3 row">
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="newFoodID" placeholder="Food ID"
+                    [(ngModel)]="newFoodID" />
+            </div>
+            <div class="col-sm-7">
+                <input type="text" class="form-control" id="newFoodDisplayName" placeholder="Food Display Name"
+                    [(ngModel)]="newFoodDisplayName" />
+            </div>
+            <div class="col-sm-2">
+                <button class="btn btn-primary" (click)="addFood()">
+                    Add Food
+                </button>
+            </div>
+        </div>
+
+
+    </div>
+
+    <table class="table table-striped mt-3" *ngIf="foods.length > 0">
+        <thead>
+            <tr>
+                <th>Food ID</th>
+                <th>Food display name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let food of foods">
+                <td>{{ food.food_id }}</td>
+                <td>{{ food.food_display_name }}</td>
+                <td>
+                    <button class="btn btn-danger" (click)="deleteFood(food)">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

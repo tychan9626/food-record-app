@@ -1,0 +1,70 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Food Selection</h2>
+  
+    <div class="mb-3">
+      <label for="userSelect" class="form-label">Select User:</label>
+      <select class="form-select" [(ngModel)]="selectedUser" id="userSelect">
+        <option *ngFor="let user of users" [value]="user.user_id">
+          {{ user.user_display_name }}
+        </option>
+      </select>
+    </div>
+  
+    <div class="mb-3">
+      <label class="form-label">Select Foods:</label>
+      <div class="d-flex flex-wrap">
+        <button
+          class="btn btn-outline-primary m-1"
+          *ngFor="let food of foods"
+          (click)="toggleFoodSelection(food.food_id)"
+          [class.active]="isFoodSelected(food.food_id)"
+        >
+          {{ food.food_display_name }}
+        </button>
+      </div>
+    </div>
+  
+    <button
+      class="btn btn-success"
+      (click)="onSubmit()"
+      [disabled]="!selectedUser || selectedFoods.length === 0"
+    >
+      Add
+    </button>
+  
+    <div class="mb-3">
+      <!-- Refresh List Button -->
+      <button class="btn btn-primary" (click)="refreshList()">
+        Refresh List
+      </button>
+  
+      <!-- Delete Whole List Button -->
+      <button class="btn btn-danger" (click)="deleteWholeList()">
+        Delete Whole List
+      </button>
+    </div>
+  
+    <table class="table table-striped mt-3" *ngIf="selectedFoodList.length > 0">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>User</th>
+          <th>Selected Foods</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of selectedFoodList">
+          <td>{{ record.time }}</td>
+          <td>{{ record.user_display_name }}</td>
+          <td>{{ record.food_display_names.join(", ") }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="deleteRecord(record)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
